@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv6j1evvcaeyt"]
+
+[ext_resource type="FontFile" uid="uid://cqd674bbs15wv" path="res://assets/fonts/Comfortaa/static/Comfortaa-Bold.ttf" id="1_sg7pt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ct76c"]
+font = ExtResource("1_sg7pt")
+font_size = 96
+
+[node name="CharacterSelect" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 256.0
+grow_horizontal = 2
+text = "CHARACTER SELECT"
+label_settings = SubResource("LabelSettings_ct76c")
+horizontal_alignment = 1
+vertical_alignment = 1
