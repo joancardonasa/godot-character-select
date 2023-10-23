@@ -13,7 +13,6 @@ func _ready():
     Events.selected_character.connect(_on_events_selected_character)
 
     var button_group: ButtonGroup = ButtonGroup.new()
-    button_group.allow_unpress = true
 
     for char_button in character_buttons:
         char_button.button_group = button_group
