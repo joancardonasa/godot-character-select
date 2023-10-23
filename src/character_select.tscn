@@ -1,12 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv6j1evvcaeyt"]
+[gd_scene load_steps=15 format=3 uid="uid://cv6j1evvcaeyt"]
 
 [ext_resource type="FontFile" uid="uid://cqd674bbs15wv" path="res://assets/fonts/Comfortaa/static/Comfortaa-Bold.ttf" id="1_sg7pt"]
+[ext_resource type="Script" path="res://src/character_select.gd" id="1_td1hr"]
+[ext_resource type="PackedScene" uid="uid://d1rqss1oma3yj" path="res://src/character_button.tscn" id="2_obwq3"]
+[ext_resource type="Resource" uid="uid://cr4kblg4uchpr" path="res://src/character_profiles/anthony.tres" id="4_ns12o"]
+[ext_resource type="Resource" uid="uid://dqs0pwxgpmqk6" path="res://src/character_profiles/bingo.tres" id="5_mrpql"]
+[ext_resource type="Resource" uid="uid://diuy45gwfirr8" path="res://src/character_profiles/ludovico.tres" id="6_rfgp7"]
+[ext_resource type="Resource" uid="uid://cw4wptbgds4mq" path="res://src/character_profiles/chad.tres" id="7_tsr57"]
+[ext_resource type="Resource" uid="uid://h2vyujn1x27c" path="res://src/character_profiles/samuel.tres" id="8_ush0m"]
+[ext_resource type="Texture2D" uid="uid://dp26386lsvver" path="res://assets/characters/char7.png" id="9_m5e46"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ct76c"]
 font = ExtResource("1_sg7pt")
 font_size = 96
+font_color = Color(0.933333, 0.929412, 0.854902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5dot"]
+bg_color = Color(0.219608, 0.25098, 0.305882, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_vgwcx"]
+font = ExtResource("1_sg7pt")
+font_size = 50
+font_color = Color(0.94902, 0.945098, 0.890196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nudh8"]
+bg_color = Color(0.937255, 0.933333, 0.866667, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_5j6y0"]
+font = ExtResource("1_sg7pt")
+font_size = 48
 
 [node name="CharacterSelect" type="Node"]
+script = ExtResource("1_td1hr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -19,7 +52,197 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="CanvasLayer/Control"]
-visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.482353, 0.615686, 1)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 192.0
+grow_horizontal = 2
+text = "CHARACTER SELECT"
+label_settings = SubResource("LabelSettings_ct76c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/TitleLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_right = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5dot")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -284.0
+offset_right = -64.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="CharacterGrid" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(670, 700)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5dot")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGridContainer" type="GridContainer" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 4
+
+[node name="CharacterButton" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+character_profile = ExtResource("4_ns12o")
+
+[node name="CharacterButton2" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+character_profile = ExtResource("5_mrpql")
+
+[node name="CharacterButton3" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+character_profile = ExtResource("6_rfgp7")
+
+[node name="CharacterButton4" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+character_profile = ExtResource("7_tsr57")
+
+[node name="CharacterButton5" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+character_profile = ExtResource("8_ush0m")
+
+[node name="CharacterButton6" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton7" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton8" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton9" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton10" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton11" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton12" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton13" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton14" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton15" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton16" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton17" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton18" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton19" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton20" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton21" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton22" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton23" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterButton24" parent="CanvasLayer/Control/HBoxContainer/CharacterGrid/ScrollContainer/ButtonGridContainer" instance=ExtResource("2_obwq3")]
+layout_mode = 2
+
+[node name="CharacterPreview" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 700)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5dot")
+
+[node name="NoCharacterSelectedLabel" type="Label" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -55.5
+offset_right = 200.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NO CHARACTER SELECTED :("
+label_settings = SubResource("LabelSettings_vgwcx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterProfileInfo" type="Control" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,14 +250,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/Control"]
+[node name="CharacterPortrait" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview/CharacterProfileInfo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 64.0
-offset_bottom = 256.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 40.0
+offset_right = 180.0
+offset_bottom = 400.0
 grow_horizontal = 2
-text = "CHARACTER SELECT"
-label_settings = SubResource("LabelSettings_ct76c")
+texture = ExtResource("9_m5e46")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview/CharacterProfileInfo/CharacterPortrait"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nudh8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview/CharacterProfileInfo"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -256.0
+offset_right = 305.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview/CharacterProfileInfo/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "Name"
+label_settings = SubResource("LabelSettings_5j6y0")
+vertical_alignment = 1
+
+[node name="HPLabel" type="Label" parent="CanvasLayer/Control/HBoxContainer/CharacterPreview/CharacterProfileInfo/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "HP: 3"
+label_settings = SubResource("LabelSettings_5j6y0")
 horizontal_alignment = 1
 vertical_alignment = 1

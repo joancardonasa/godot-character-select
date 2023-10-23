@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterProfile" load_steps=3 format=3 uid="uid://cw4wptbgds4mq"]
+
+[ext_resource type="Script" path="res://src/character_profiles/character_profile.gd" id="1_oj7ej"]
+[ext_resource type="Texture2D" uid="uid://bgt1top28y2nf" path="res://assets/characters/char6.png" id="1_q8b21"]
+
+[resource]
+script = ExtResource("1_oj7ej")
+character_name = "Chad"
+character_portrait = ExtResource("1_q8b21")
+character_hp = 4
