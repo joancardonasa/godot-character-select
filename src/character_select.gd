@@ -19,7 +19,7 @@ func _ready():
 
     no_character_selected_label.visible = true
     character_profile_info.visible = false
-    
+
 
 func _on_events_selected_character(character_profile: CharacterProfile):
     if !character_profile:
